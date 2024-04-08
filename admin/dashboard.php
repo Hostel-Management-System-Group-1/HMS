@@ -50,7 +50,14 @@ check_login();
 											<div class="panel-body bk-primary text-light">
 												<div class="stat-panel text-center">
 
-
+<?php
+$result ="SELECT count(*) FROM registration ";
+$stmt = $mysqli->prepare($result);
+$stmt->execute();
+$stmt->bind_result($count);
+$stmt->fetch();
+$stmt->close();
+?>
 
 													<div class="stat-panel-number h1 "><?php echo $count;?></div>
 													<div class="stat-panel-title text-uppercase"> Students</div>
@@ -63,7 +70,15 @@ check_login();
 										<div class="panel panel-default">
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
-
+<?php
+$result1 ="SELECT count(*) FROM rooms ";
+$stmt1 = $mysqli->prepare($result1);
+$stmt1->execute();
+$stmt1->bind_result($count1);
+$stmt1->fetch();
+$stmt1->close();
+?>
+													<div class="stat-panel-number h1 "><?php echo $count1;?></div>
 													<div class="stat-panel-title text-uppercase">Total Rooms </div>
 												</div>
 											</div>
@@ -98,7 +113,29 @@ check_login();
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 
+	<script>
 
+	window.onload = function(){
+
+		// Line chart from swirlData for dashReport
+		var ctx = document.getElementById("dashReport").getContext("2d");
+		window.myLine = new Chart(ctx).Line(swirlData, {
+			responsive: true,
+			scaleShowVerticalLines: false,
+			scaleBeginAtZero : true,
+			multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+		});
+
+		// Pie Chart from doughutData
+		var doctx = document.getElementById("chart-area3").getContext("2d");
+		window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive : true});
+
+		// Dougnut Chart from doughnutData
+		var doctx = document.getElementById("chart-area4").getContext("2d");
+		window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive : true});
+
+	}
+	</script>
 
 </body>
 
