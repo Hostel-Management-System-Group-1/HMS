@@ -1,8 +1,48 @@
 <?php
 session_start();
 include ('includes/config.php');
- 
+if (isset($_POST['login'])) {
+	$email = $_POST['email'];
+	$password = $_POST['password'];
+	$admin_approved = 0;
+	$stmt = $mysqli->prepare("SELECT email,password,id,admin_approved FROM userregistration WHERE email=? and password=? ");
+	$stmt->bind_param('ssi', $email, $password, $admin_approved);
+	$stmt->execute();
+	$stmt->bind_result($email, $password, $id, $admin_approved);
+	$rs = $stmt->fetch();
+	$stmt->close();
+	$_SESSION['id'] = $id;
+	$_SESSION['login'] = $email;
+	$uip = $_SERVER['REMOTE_ADDR'];
+	$ldate = date('d/m/Y h:i:s', time());
+	if ($admin_approved == 0){
+		header("Location: /index.php?admin_approval_error=1");
+	}else{
+		if ($rs) {
+			$uid = $_SESSION['id'];
+			$uemail = $_SESSION['login'];
+			$ip = $_SERVER['REMOTE_ADDR'];
+	
+			$stmt->execute();
+			$res = $stmt->get_result();
+			$cnt = 1;
+			while ($row = $res->fetch_object())
+	
+			// 	$geopluginURL = 'http://www.geoplugin.net/php.gp?ip=' . $ip;
+			// $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
+			// $city = $addrDetailsArr['geoplugin_city'];
+			// $country = $addrDetailsArr['geoplugin_countryName'];
+			// $log = "insert into userLog(userId,userEmail,userIp,city,country) values('$uid','$uemail','$ip','$city','$country')";
+			// $mysqli->query($log);
+			header("location:dashboard.php");
+			// if ($log) {
+			// }
+		} else {
+			echo "<script>alert('Invalid Username/Email or password');</script>";
+		}
 
+	}
+}
 ?>
 
 <!doctype html>

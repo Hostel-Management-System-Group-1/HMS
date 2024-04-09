@@ -1,7 +1,22 @@
 <?php
 session_start();
 include('includes/config.php');
- 
+if(isset($_POST['submit']))
+{
+$regno=$_POST['regno'];
+$fname=$_POST['fname'];
+$mname=$_POST['mname'];
+$lname=$_POST['lname'];
+$gender=$_POST['gender'];
+$contactno=$_POST['contact'];
+$emailid=$_POST['email'];
+$password=$_POST['password'];
+$query="insert into  userRegistration(regNo,firstName,middleName,lastName,gender,contactNo,email,password) values(?,?,?,?,?,?,?,?)";
+$stmt = $mysqli->prepare($query);
+$rc=$stmt->bind_param('sssssiss',$regno,$fname,$mname,$lname,$gender,$contactno,$emailid,$password);
+$stmt->execute();
+echo"<script>alert('Student Succssfully register');</script>";
+}
 ?>
 
 <!doctype html>
@@ -26,7 +41,16 @@ include('includes/config.php');
 <script type="text/javascript" src="js/validation.min.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
 <script type="text/javascript">
- 
+function valid()
+{
+if(document.registration.password.value!= document.registration.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.registration.cpassword.focus();
+return false;
+}
+return true;
+}
 </script>
 </head>
 <body>
@@ -154,7 +178,24 @@ include('includes/config.php');
 	<script src="js/main.js"></script>
 </body>
 	<script>
+function checkAvailability() {
 
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "check_availability.php",
+data:'emailid='+$("#email").val(),
+type: "POST",
+success:function(data){
+$("#user-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function ()
+{
+event.preventDefault();
+alert('error');
+}
+});
+}
 </script>
 
 </html>
