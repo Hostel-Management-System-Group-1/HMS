@@ -3,6 +3,46 @@ session_start();
 include('includes/config.php');
 include('includes/checklogin.php');
 check_login();
+//code for update email id
+if($_POST['update'])
+{
+$email=$_POST['emailid'];
+$aid=$_SESSION['id'];
+$udate=date('Y-m-d');
+$query="update admin set email=?,updation_date=? where id=?";
+$stmt = $mysqli->prepare($query);
+$rc=$stmt->bind_param('ssi',$email,$udate,$aid);
+$stmt->execute();
+echo"<script>alert('Email id has been successfully updated');</script>";
+}
+// code for change password
+if(isset($_POST['changepwd']))
+{
+  $op=$_POST['oldpassword'];
+  $np=$_POST['newpassword'];
+$ai=$_SESSION['id'];
+$udate=date('Y-m-d');
+	$sql="SELECT password FROM admin where password=?";
+	$chngpwd = $mysqli->prepare($sql);
+	$chngpwd->bind_param('s',$op);
+	$chngpwd->execute();
+	$chngpwd->store_result(); 
+    $row_cnt=$chngpwd->num_rows;;
+	if($row_cnt>0)
+	{
+		$con="update admin set password=?,updation_date=?  where id=?";
+$chngpwd1 = $mysqli->prepare($con);
+$chngpwd1->bind_param('ssi',$np,$udate,$ai);
+  $chngpwd1->execute();
+		$_SESSION['msg']="Password Changed Successfully !!";
+	}
+	else
+	{
+		$_SESSION['msg']="Old Password not match !!";
+	}	
+	
+
+}
 ?>
 <!doctype html>
 <html lang="en" class="no-js">
@@ -25,6 +65,17 @@ check_login();
 <script type="text/javascript" src="js/jquery-1.11.3-jquery.min.js"></script>
 <script type="text/javascript" src="js/validation.min.js"></script>
 <script type="text/javascript">
+function valid()
+{
+
+if(document.changepwd.newpassword.value!= document.changepwd.cpassword.value)
+{
+alert("Password and Re-Type Password Field do not match  !!");
+document.changepwd.cpassword.focus();
+return false;
+}
+return true;
+}
 </script>
 
 </head>
@@ -158,7 +209,36 @@ $aid=$_SESSION['id'];
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
-
+	<script>
+function checkAvailability() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "check_availability.php",
+data:'emailid='+$("#emailid").val(),
+type: "POST",
+success:function(data){
+$("#user-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+</script>
+<script>
+function checkpass() {
+$("#loaderIcon").show();
+jQuery.ajax({
+url: "check_availability.php",
+data:'oldpassword='+$("#oldpassword").val(),
+type: "POST",
+success:function(data){
+$("#password-availability-status").html(data);
+$("#loaderIcon").hide();
+},
+error:function (){}
+});
+}
+</script>
 </body>
 
 </html>
