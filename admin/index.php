@@ -15,7 +15,11 @@ $stmt=$mysqli->prepare("SELECT username,email,password,id FROM admin WHERE (user
 				$ldate=date('d/m/Y h:i:s', time());
 				if($rs)
 				{
-					header("location:admin-profile.php");
+                //  $insert="INSERT into admin(adminid,ip)VALUES(?,?)";
+   // $stmtins = $mysqli->prepare($insert);
+   // $stmtins->bind_param('sH',$id,$uip);
+    //$res=$stmtins->execute();
+					header("location:dashboard.php");
 				}
 
 				else

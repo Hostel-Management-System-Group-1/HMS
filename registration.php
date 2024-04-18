@@ -1,24 +1,20 @@
 <?php
 session_start();
 include('includes/config.php');
-date_default_timezone_set('Asia/Kathmandu');
-include('includes/checklogin.php');
-check_login();
-$aid=$_SESSION['id'];
-if(isset($_POST['update']))
+if(isset($_POST['submit']))
 {
-
-$regno=$_POST['regno'];
 $fname=$_POST['fname'];
 $mname=$_POST['mname'];
 $lname=$_POST['lname'];
 $gender=$_POST['gender'];
 $contactno=$_POST['contact'];
-$query="update  userRegistration set regNo=?,firstName=?,middleName=?,lastName=?,gender=?,contactNo=? where id=?";
+$emailid=$_POST['email'];
+$password=$_POST['password'];
+$query="insert into  userRegistration (firstName,middleName,lastName,gender,contactNo,email,password) values(?,?,?,?,?,?,?)";
 $stmt = $mysqli->prepare($query);
-$rc=$stmt->bind_param('sssssii',$regno,$fname,$mname,$lname,$gender,$contactno,$aid);
+$rc=$stmt->bind_param('ssssiss',$fname,$mname,$lname,$gender,$contactno,$emailid,$password);
 $stmt->execute();
-echo"<script>alert('Profile updated Succssfully');</script>";
+echo"<script>alert('Student Succssfully register');</script>";
 }
 ?>
 
@@ -31,7 +27,7 @@ echo"<script>alert('Profile updated Succssfully');</script>";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	<title>Profile Updation</title>
+	<title>User Registration</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">>
@@ -62,60 +58,38 @@ return true;
 		<?php include('includes/sidebar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-	<?php	
-$aid=$_SESSION['id'];
-	$ret="select * from userregistration where id=?";
-		$stmt= $mysqli->prepare($ret) ;
-	 $stmt->bind_param('i',$aid);
-	 $stmt->execute() ;//ok
-	 $res=$stmt->get_result();
-	 //$cnt=1;
-	   while($row=$res->fetch_object())
-	  {
-	  	?>	
+
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title"><?php echo $row->firstName;?>'s&nbsp;Profile </h2>
+					
+						<h2 class="page-title">Student Registration </h2>
 
 						<div class="row">
 							<div class="col-md-12">
 								<div class="panel panel-primary">
-									<div class="panel-heading">
-
-</div>
-									
-
-<div class="panel-body">
-<form method="post" action="" name="registration" class="form-horizontal" onSubmit="return valid();">
-								
-								
-
-<div class="form-group">
-<label class="col-sm-2 control-label"> Registration No : </label>
-<div class="col-sm-8">
-<input type="text" name="regno" id="regno"  class="form-control" required="required" value="<?php echo $row->regNo;?>" >
-</div>
-</div>
-
-
+									<div class="panel-heading">Fill all Info</div>
+									<div class="panel-body">
+			<form method="post" action="" name="registration" class="form-horizontal" onSubmit="return valid();">
+											
+										
 <div class="form-group">
 <label class="col-sm-2 control-label">First Name : </label>
 <div class="col-sm-8">
-<input type="text" name="fname" id="fname"  class="form-control" value="<?php echo $row->firstName;?>"   required="required" >
+<input type="text" name="fname" id="fname"  class="form-control" required="required" >
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Middle Name : </label>
 <div class="col-sm-8">
-<input type="text" name="mname" id="mname"  class="form-control" value="<?php echo $row->middleName;?>"  >
+<input type="text" name="mname" id="mname"  class="form-control">
 </div>
 </div>
 
 <div class="form-group">
 <label class="col-sm-2 control-label">Last Name : </label>
 <div class="col-sm-8">
-<input type="text" name="lname" id="lname"  class="form-control" value="<?php echo $row->lastName;?>" required="required">
+<input type="text" name="lname" id="lname"  class="form-control" required="required">
 </div>
 </div>
 
@@ -123,11 +97,10 @@ $aid=$_SESSION['id'];
 <label class="col-sm-2 control-label">Gender : </label>
 <div class="col-sm-8">
 <select name="gender" class="form-control" required="required">
-<option value="<?php echo $row->gender;?>"><?php echo $row->gender;?></option>
+<option value="">Select Gender</option>
 <option value="male">Male</option>
 <option value="female">Female</option>
 <option value="others">Others</option>
-
 </select>
 </div>
 </div>
@@ -135,7 +108,7 @@ $aid=$_SESSION['id'];
 <div class="form-group">
 <label class="col-sm-2 control-label">Contact No : </label>
 <div class="col-sm-8">
-<input type="text" name="contact" id="contact"  class="form-control" maxlength="10" value="<?php echo $row->contactNo;?>" required="required">
+<input type="text" name="contact" id="contact"  class="form-control" required="required">
 </div>
 </div>
 
@@ -143,19 +116,32 @@ $aid=$_SESSION['id'];
 <div class="form-group">
 <label class="col-sm-2 control-label">Email id: </label>
 <div class="col-sm-8">
-<input type="email" name="email" id="email"  class="form-control" value="<?php echo $row->email;?>" readonly>
+<input type="email" name="email" id="email"  class="form-control" onBlur="checkAvailability()" required="required">
 <span id="user-availability-status" style="font-size:12px;"></span>
 </div>
 </div>
-<?php } ?>
 
+<div class="form-group">
+<label class="col-sm-2 control-label">Password: </label>
+<div class="col-sm-8">
+<input type="password" name="password" id="password"  class="form-control" required="required">
+</div>
+</div>
+
+
+<div class="form-group">
+<label class="col-sm-2 control-label">Confirm Password : </label>
+<div class="col-sm-8">
+<input type="password" name="cpassword" id="cpassword"  class="form-control" required="required">
+</div>
+</div>
 						
 
 
 
 <div class="col-sm-6 col-sm-offset-4">
-
-<input type="submit" name="update" Value="Update Profile" class="btn btn-primary">
+<button class="btn btn-default" type="submit">Cancel</button>
+<input type="submit" name="submit" Value="Register" class="btn btn-primary">
 </div>
 </form>
 
@@ -181,19 +167,6 @@ $aid=$_SESSION['id'];
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
 </body>
-<script type="text/javascript">
-	$(document).ready(function(){
-        $('input[type="checkbox"]').click(function(){
-            if($(this).prop("checked") == true){
-                $('#paddress').val( $('#address').val() );
-                $('#pcity').val( $('#city').val() );
-                $('#pstate').val( $('#state').val() );
-                $('#ppincode').val( $('#pincode').val() );
-            } 
-            
-        });
-    });
-</script>
 	<script>
 function checkAvailability() {
 
@@ -206,7 +179,10 @@ success:function(data){
 $("#user-availability-status").html(data);
 $("#loaderIcon").hide();
 },
-error:function (){}
+error:function ()
+{
+event.preventDefault();
+}
 });
 }
 </script>
