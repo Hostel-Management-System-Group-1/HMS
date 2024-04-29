@@ -296,6 +296,9 @@ while($row=$res->fetch_object())
         $('input[type="checkbox"]').click(function(){
             if($(this).prop("checked") == true){
                 $('#paddress').val( $('#address').val() );
+                $('#pcity').val( $('#city').val() );
+                $('#pstate').val( $('#state').val() );
+                $('#ppincode').val( $('#pincode').val() );
             } 
             
         });

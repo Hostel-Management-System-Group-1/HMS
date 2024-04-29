@@ -14,7 +14,7 @@
 					</ul>
 				</li>
 
-				<li><a href="dashboard.php"><i class="fa fa-user"></i>Student Registration</a></li>
+				<li><a href="registration.php"><i class="fa fa-user"></i>Student Registration</a></li>
 				<li><a href="dashboard.php"><i class="fa fa-users"></i>Manage Students</a></li>
 				<li><a href="dashboard.php"><i class="fa fa-check"></i>Verify Students</a></li>
 			

@@ -19,7 +19,7 @@ $stmt=$mysqli->prepare("SELECT username,email,password,id FROM admin WHERE (user
    // $stmtins = $mysqli->prepare($insert);
    // $stmtins->bind_param('sH',$id,$uip);
     //$res=$stmtins->execute();
-					header("location:dashboard.php");
+					header("location:admin-profile.php");
 				}
 
 				else
