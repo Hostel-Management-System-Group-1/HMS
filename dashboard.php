@@ -56,7 +56,7 @@ check_login();
 
 												</div>
 											</div>
-											<a href="dashboard.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
+											<a href="my-profile.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -68,7 +68,7 @@ check_login();
 
 												</div>
 											</div>
-											<a href="dashboard.php" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="room-details.php" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 
@@ -87,6 +87,7 @@ check_login();
 		</div>
 	</div>
 
+	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -101,6 +102,7 @@ check_login();
 
 	window.onload = function(){
 
+		// Line chart from swirlData for dashReport
 		var ctx = document.getElementById("dashReport").getContext("2d");
 		window.myLine = new Chart(ctx).Line(swirlData, {
 			responsive: true,
@@ -109,7 +111,13 @@ check_login();
 			multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
 		});
 
-		
+		// Pie Chart from doughutData
+		var doctx = document.getElementById("chart-area3").getContext("2d");
+		window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive : true});
+
+		// Dougnut Chart from doughnutData
+		var doctx = document.getElementById("chart-area4").getContext("2d");
+		window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive : true});
 
 	}
 	</script>
