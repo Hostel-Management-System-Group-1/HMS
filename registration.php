@@ -182,6 +182,7 @@ $("#loaderIcon").hide();
 error:function ()
 {
 event.preventDefault();
+alert('error');
 }
 });
 }

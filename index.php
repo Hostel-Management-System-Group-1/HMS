@@ -10,7 +10,11 @@ if (isset($_POST['login'])) {
 	$stmt->execute();
 	$stmt->bind_result($email, $password, $id, $admin_approved);
 	$rs = $stmt->fetch();
-	if(1){
+	// $stmt->close();
+	if ($admin_approved == 0) {
+		// echo "".$_SERVER['PHP_SELF']."";
+		header("Location: " . $_SERVER["PHP_SELF"] . "?admin_approval_error=1");
+	} else {
 		$_SESSION['id'] = $id;
 		$_SESSION['login'] = $email;
 		$uip = $_SERVER['REMOTE_ADDR'];
@@ -24,8 +28,16 @@ if (isset($_POST['login'])) {
 			$res = $stmt->get_result();
 			$cnt = 1;
 			while ($row = $res->fetch_object())
-			header("location:dashboard.php");
 	
+			// 	$geopluginURL = 'http://www.geoplugin.net/php.gp?ip=' . $ip;
+			// $addrDetailsArr = unserialize(file_get_contents($geopluginURL));
+			// $city = $addrDetailsArr['geoplugin_city'];
+			// $country = $addrDetailsArr['geoplugin_countryName'];
+			// $log = "insert into userLog(userId,userEmail,userIp,city,country) values('$uid','$uemail','$ip','$city','$country')";
+			// $mysqli->query($log);
+			header("location:dashboard.php");
+			// if ($log) {
+			// }
 		} else {
 			echo "<script>alert('Invalid Username/Email or password');</script>";
 		}
@@ -77,7 +89,11 @@ if (isset($_POST['login'])) {
 
 				<div class="row">
 					<div class="col-md-12">
-						
+						<?php
+						if (isset($_GET["admin_approval_error"])) {
+							echo '<h1>You are not approved by admin</h1>';
+						}
+						?>
 						<h2 class="page-title">User Login </h2>
 
 						<div class="row">
