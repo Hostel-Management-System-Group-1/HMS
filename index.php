@@ -13,7 +13,7 @@ if (isset($_POST['login'])) {
     // $stmt->close();
     if ($admin_approved == 0) {
         // echo "".$_SERVER['PHP_SELF']."";
-        header("Location: " . $_SERVER["PHP_SELF"] . "?admin_approval_error=1");
+        header("Location: nonApproved.php");
     } else {
         $_SESSION['id'] = $id;
         $_SESSION['login'] = $email;
