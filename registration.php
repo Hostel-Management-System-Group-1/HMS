@@ -52,7 +52,7 @@ return true;
 }
 </script>
 </head>
-<body style="background-color:#337ab7;">
+<body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
 		<?php include('includes/sidebar.php');?>

@@ -38,7 +38,7 @@ popUpWin = open(URLStr,'popUpWin', 'toolbar=no,location=no,directories=no,status
 
 </head>
 
-<body style="background-color:#337ab7;">
+<body>
 	<?php include('includes/header.php');?>
 
 	<div class="ts-main-content">

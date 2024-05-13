@@ -1,23 +1,8 @@
 <?php
 session_start();
-include ('includes/config.php');
-include ('includes/checklogin.php');
+include('includes/config.php');
+include('includes/checklogin.php');
 check_login();
-
-
-$sql = "SELECT * FROM notice_board";
-$result = $mysqli->query($sql);
-
-$notices = "";
-// Check if there are any results
-if ($result->num_rows > 0) {
-	// Fetch data row by row
-	while ($row = $result->fetch_assoc()) {
-		$notices = $row["date"] . "\n" . $row["notice"] . "\n\n" . $notices;
-	}
-} else {
-	$notices = "No notices available.";
-}
 
 ?>
 <!doctype html>
@@ -44,11 +29,11 @@ if ($result->num_rows > 0) {
 
 </head>
 
-<body style="background-color:#337ab7;">
-	<?php include ("includes/header.php"); ?>
+<body>
+<?php include("includes/header.php");?>
 
 	<div class="ts-main-content">
-		<?php include ("includes/sidebar.php"); ?>
+		<?php include("includes/sidebar.php");?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
 
@@ -71,8 +56,7 @@ if ($result->num_rows > 0) {
 
 												</div>
 											</div>
-											<a href="my-profile.php" class="block-anchor panel-footer">Full Detail <i
-													class="fa fa-arrow-right"></i></a>
+											<a href="my-profile.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -80,24 +64,18 @@ if ($result->num_rows > 0) {
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
 
-													<div class="stat-panel-number h1 ">My Room</div>
+												<div class="stat-panel-number h1 ">My Room</div>
 
 												</div>
 											</div>
-											<a href="room-details.php" class="block-anchor panel-footer text-center">See
-												All &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="room-details.php" class="block-anchor panel-footer text-center">See All &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 
 								</div>
 							</div>
 						</div>
-						<div style="max-width:50vw;">
-							<div style="display:flex;flex-direction:row;justify-content:space-between;">
-								<h1>Notice Board</h1>
-							</div>
-							<textarea id="notice-text" style="width:100%;height:30vh"><?php echo $notices; ?></textarea>
-						</div>
+
 
 
 
@@ -122,35 +100,29 @@ if ($result->num_rows > 0) {
 
 	<script>
 
-		window.onload = function () {
+	window.onload = function(){
 
-			// Line chart from swirlData for dashReport
-			var ctx = document.getElementById("dashReport").getContext("2d");
-			window.myLine = new Chart(ctx).Line(swirlData, {
-				responsive: true,
-				scaleShowVerticalLines: false,
-				scaleBeginAtZero: true,
-				multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-			});
+		// Line chart from swirlData for dashReport
+		var ctx = document.getElementById("dashReport").getContext("2d");
+		window.myLine = new Chart(ctx).Line(swirlData, {
+			responsive: true,
+			scaleShowVerticalLines: false,
+			scaleBeginAtZero : true,
+			multiTooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
+		});
 
-			// Pie Chart from doughutData
-			var doctx = document.getElementById("chart-area3").getContext("2d");
-			window.myDoughnut = new Chart(doctx).Pie(doughnutData, { responsive: true });
+		// Pie Chart from doughutData
+		var doctx = document.getElementById("chart-area3").getContext("2d");
+		window.myDoughnut = new Chart(doctx).Pie(doughnutData, {responsive : true});
 
-			// Dougnut Chart from doughnutData
-			var doctx = document.getElementById("chart-area4").getContext("2d");
-			window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, { responsive: true });
+		// Dougnut Chart from doughnutData
+		var doctx = document.getElementById("chart-area4").getContext("2d");
+		window.myDoughnut = new Chart(doctx).Doughnut(doughnutData, {responsive : true});
 
-		}
+	}
 	</script>
 
 </body>
 
-<style>
-	.foot {
-		text-align: center;
-		border: 1px solid black;
-	}
-</style>
-
+<style> .foot{text-align: center; border: 1px solid black;}</style>
 </html>
