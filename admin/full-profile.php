@@ -28,7 +28,7 @@ window.print();
 <link href="hostel.css" rel="stylesheet" type="text/css">
 </head>
 
-<body>
+<body style="background-color:#337ab7;">
 <table width="100%" border="0">
 <?php 
 		 $ret= mysql_query("SELECT * FROM registration where id = '".$_GET['id']."'");

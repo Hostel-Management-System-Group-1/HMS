@@ -50,7 +50,7 @@ echo"<script>alert('Room has been added successfully');</script>";
 <script type="text/javascript" src="js/jquery-1.11.3-jquery.min.js"></script>
 <script type="text/javascript" src="js/validation.min.js"></script>
 </head>
-<body>
+<body style="background-color:#337ab7;">
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
 		<?php include('includes/sidebar.php');?>

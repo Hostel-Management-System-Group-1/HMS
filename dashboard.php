@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
 
 </head>
 
-<body>
+<body style="background-color:#337ab7;">
 	<?php include ("includes/header.php"); ?>
 
 	<div class="ts-main-content">

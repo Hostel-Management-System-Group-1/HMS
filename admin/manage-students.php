@@ -45,7 +45,7 @@ if (isset($_GET['del'])) {
 
 </head>
 
-<body>
+<body style="background-color:#337ab7;">
 	<?php include ('includes/header.php'); ?>
 
 	<div class="ts-main-content">

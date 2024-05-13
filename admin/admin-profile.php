@@ -100,7 +100,7 @@ if(isset($_POST['changepwd'])) {
         }
     </style>
 </head>
-<body>
+<body style="background-color:#337ab7;">
     <?php include('includes/header.php');?>
     <div class="ts-main-content">
         <?php include('includes/sidebar.php');?>

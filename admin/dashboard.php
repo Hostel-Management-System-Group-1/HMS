@@ -41,7 +41,7 @@ if ($result->num_rows > 0) {
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body style="background-color:#337ab7;">
 	<div id="notice-modal-container" class="notice-modal-container"
 		style="z-index:1111111;width:100%;height:100%;top:0px;left:0px;display:none;position:absolute;flex-direction:column;justify-content:center;align-items:center;background-color:rgba(0,0,0,0.5);">
 		<div class="modal-content notice-modal"

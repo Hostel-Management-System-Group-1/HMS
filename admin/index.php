@@ -103,7 +103,7 @@ if(isset($_POST['login']))
     </style>
 </head>
 
-<body>
+<body style="background-color:#337ab7;">
     <div class="login-container">
         <h1>Admin Login</h1>
         <form action="" method="post">
