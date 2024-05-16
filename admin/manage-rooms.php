@@ -34,6 +34,11 @@ if(isset($_GET['del']))
 	<link rel="stylesheet" href="css/fileinput.min.css">
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<link rel="stylesheet" href="css/style.css">
+	<style>
+		i{
+			color:black;
+		}
+	</style>
 </head>
 
 <body style="background-color:#337ab7;">
@@ -44,8 +49,8 @@ if(isset($_GET['del']))
 		<div class="content-wrapper">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-						<h2 class="page-title">Manage Rooms</h2>
+					<div class="col-md-12"><br><br><br>
+						<h2 class="page-title" style="color:white;">Manage Rooms</h2>
 						<div class="panel panel-default">
 							<div class="panel-heading">All Room Details</div>
 							<div class="panel-body">
@@ -62,17 +67,7 @@ if(isset($_GET['del']))
 											<th>Action</th>
 										</tr>
 									</thead>
-									<tfoot>
-										<tr>
-											<th>Sno.</th>
-											<th>Seater</th>
-											<th>Room No.</th>
-										
-											<th>Fees (PM) </th>
-											<th>Posting Date  </th>
-											<th>Action</th>
-										</tr>
-									</tfoot>
+									
 									<tbody>
 <?php	
 $aid=$_SESSION['id'];

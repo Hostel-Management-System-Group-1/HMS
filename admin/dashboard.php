@@ -10,15 +10,15 @@ $result = $mysqli->query($sql);
 $notices = "";
 // Check if there are any results
 if ($result->num_rows > 0) {
-    // Fetch data row by row
-    while($row = $result->fetch_assoc()) {
-        $notices = $row["date"]."\n".$row["notice"]."\n\n".$notices;
-    }
+	// Fetch data row by row
+	while ($row = $result->fetch_assoc()) {
+		$notices = $row["date"] . "\n" . $row["notice"] . "\n\n" . $notices;
+	}
 } else {
-    $notices = "No notices available.";
+	$notices = "No notices available.";
 }
 
-	?>
+?>
 <!doctype html>
 <html lang="en" class="no-js">
 
@@ -39,6 +39,7 @@ if ($result->num_rows > 0) {
 	<link rel="stylesheet" href="css/fileinput.min.css">
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<link rel="stylesheet" href="css/style.css">
+
 </head>
 
 <body style="background-color:#337ab7;">
@@ -54,6 +55,7 @@ if ($result->num_rows > 0) {
 			<button type="submit" onclick="addNotice()">Add</button>
 		</div>
 	</div>
+	<br><br><br>
 	<?php include ("includes/header.php"); ?>
 
 	<div class="ts-main-content">
@@ -64,7 +66,7 @@ if ($result->num_rows > 0) {
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Dashboard</h2>
+						<h2 class="page-title" style="color:white;">Dashboard</h2>
 
 						<div class="row">
 							<div class="col-md-12">
@@ -84,7 +86,7 @@ if ($result->num_rows > 0) {
 													?>
 
 													<div class="stat-panel-number h1 "><?php echo $count; ?></div>
-													<div class="stat-panel-title text-uppercase"> Students</div>
+													<div class="stat-panel-title text-uppercase"> Residents</div>
 												</div>
 											</div>
 											<a href="manage-students.php" class="block-anchor panel-footer">Full Detail
@@ -93,7 +95,7 @@ if ($result->num_rows > 0) {
 									</div>
 									<div class="col-md-3">
 										<div class="panel panel-default">
-											<div class="panel-body bk-success text-light">
+											<div class="panel-body bk-primary text-light">
 												<div class="stat-panel text-center">
 													<?php
 													$result1 = "SELECT count(*) FROM rooms ";
@@ -118,8 +120,14 @@ if ($result->num_rows > 0) {
 						</div>
 						<div style="max-width:50vw;">
 							<div style="display:flex;flex-direction:row;justify-content:space-between;">
-								<h1>Notice Board</h1>
-								<button class="btn btn-primary" onclick="openNoticeAddingModal()">Add Notice</button>
+								<h1 style="color:white;">Notice Board</h1>
+								<div style="display:flex;flex-direction:row;justify-content:space-between;">
+								<button class="btn btn-primary" style="height:60px"
+									onclick="openNoticeAddingModal()">Add Notice</button> 
+									-
+								<button class="btn btn-primary" style="height:60px"
+									onclick="clearNotice()">Clear</button>
+									</div>
 							</div>
 							<textarea id="notice-text" style="width:100%;height:30vh"><?php echo $notices; ?></textarea>
 						</div>
@@ -141,8 +149,12 @@ if ($result->num_rows > 0) {
 		}
 		function addNotice() {
 			const newNotice = document.getElementById("new-notice-textarea")?.value;
-			alert("Addingn notice: "+newNotice.toString())
+			alert("Addingn notice: " + newNotice.toString())
 			window.open(`addNotice.php?notice=${newNotice}`);
+		}
+		function clearNotice(){
+			window.open(`addNotice.php?clear_notice_board`);
+
 		}
 	</script>
 

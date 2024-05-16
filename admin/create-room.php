@@ -59,9 +59,8 @@ echo"<script>alert('Room has been added successfully');</script>";
 
 				<div class="row">
 					<div class="col-md-12">
-					
-						<h2 class="page-title">Add a Room </h2>
-	
+						<br><br>
+						<h2 class="page-title" style="color:white;">Add a Room </h2>
 						<div class="row">
 							<div class="col-md-12">
 								<div class="panel panel-default">
@@ -94,7 +93,7 @@ echo"<script>alert('Room has been added successfully');</script>";
 </div>
 </div>
 <div class="form-group">
-<label class="col-sm-2 control-label">Fee(Per Student)</label>
+<label class="col-sm-2 control-label">Fee(Per Resident)</label>
 <div class="col-sm-8">
 <input type="text" class="form-control" name="fee" id="fee" value="" required="required">
 </div>

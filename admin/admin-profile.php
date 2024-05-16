@@ -108,7 +108,7 @@ if(isset($_POST['changepwd'])) {
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="page-title">Admin Profile</h2>
+                        <h2 class="page-title" style="color:white;">Admin Profile</h2>
                         <?php
                         $aid=$_SESSION['id'];
                         $ret="select * from admin where id=?";

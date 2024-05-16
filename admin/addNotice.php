@@ -11,5 +11,17 @@ if (isset($_GET["notice"])) {
     $mysqli->execute_query($query);
     echo "Added!";
 }
-header("Location: dashboard.php")
+
+
+if (isset($_GET["clear_notice_board"])) {
+    $query = "TRUNCATE TABLE notice_board"; // Deletes all rows from the table
+    
+    if ($mysqli->query($query) === TRUE) {
+        echo "Notice board cleared!";
+    } else {
+        echo "Error: Unable to clear notice board.";
+    }
+}
+
+header("Location: dashboard.php");
 ?>

@@ -54,8 +54,8 @@ if ($result->num_rows > 0) {
 
 				<div class="row">
 					<div class="col-md-12">
-
-						<h2 class="page-title">Dashboard</h2>
+					<br><br>
+						<h2 class="page-title" style="color:white;">Dashboard</h2>
 
 						<div class="row">
 							<div class="col-md-12">
@@ -94,7 +94,7 @@ if ($result->num_rows > 0) {
 						</div>
 						<div style="max-width:50vw;">
 							<div style="display:flex;flex-direction:row;justify-content:space-between;">
-								<h1>Notice Board</h1>
+								<h1 style="color:white;">Notice Board</h1>
 							</div>
 							<textarea id="notice-text" style="width:100%;height:30vh"><?php echo $notices; ?></textarea>
 						</div>

@@ -137,7 +137,8 @@ if (isset($_POST['login'])) {
     </style>
 </head>
 
-<body style="background-color:#337ab7;">
+<body class="custom-background" style="background-color:#337ab7;">
+
     <?php include ('includes/header.php'); ?>
     <div class="ts-main-content">
         <?php include ('includes/sidebar.php'); ?>
@@ -177,6 +178,14 @@ if (isset($_POST['login'])) {
     <script src="js/fileinput.js"></script>
     <script src="js/chartData.js"></script>
     <script src="js/main.js"></script>
+    <style>
+    body.custom-background {
+        background-image: url('image.png'); /* Change 'path/to/your/image.jpg' to the actual path of your image */
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+</style>
 </body>
 
 </html>

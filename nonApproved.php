@@ -33,21 +33,25 @@
             top: 10px;
             left: 50%;
             transform: translate(-50%);
-
+            
             z-index: 10;
         }
-
-        .toast-icon svg {
-            width: 30px;
-            height: 20px;
-            fill: #fff;
-        }
-
         .toast-content {
             font-family: Arial, sans-serif;
             font-size: 14px;
         }
+        .toast button{
+            border: none;
+            background-color: transparent;
+        }
+        .toast button > i {
+            color: white;
+            font-size: 2em;
+        }
+
     </style>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
 </head>
 
 <body style="background-color:#337ab7;">
@@ -55,6 +59,14 @@
         <div class="toast-content">
             You are not approved by admin
         </div>
+        <div style="border:none;">
+            <button onclick="closeToast()"><i class='bx bx-x-circle'></i></button>
+        </div>
+        <script>
+            function closeToast(){
+                document.querySelector('.toast').style.display='none';
+            }
+        </script>
     </div>
     <?php include ("includes/header.php"); ?>
 
@@ -66,7 +78,7 @@
                 <div class="row">
                     <div class="col-md-12">
 
-                        <h2 class="page-title">Dashboard</h2>
+                        <h2 class="page-title" style="color:white;">Dashboard</h2>
 
                         <div class="row">
                             <div class="col-md-12">
@@ -105,10 +117,13 @@
                         </div>
                         <div style="max-width:50vw;">
                             <div style="display:flex;flex-direction:row;justify-content:space-between;">
-                                <h1>Notice Board</h1>
+                                <h1 style="color:white;">Notice Board</h1>
                             </div>
-                            <textarea id="notice-text"
-                                style="width:100%;height:30vh">After approval, you will see notices here</textarea>
+                            <textarea id="notice-text" 
+                                style="width:100%;height:30vh;font-size:1.5em; text-align:center;">
+                                
+
+After approval, you will see notices here</textarea>
                         </div>
 
 

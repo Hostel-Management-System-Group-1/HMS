@@ -1,3 +1,5 @@
+
+
 <?php
 session_start();
 include ('includes/config.php');
@@ -53,25 +55,25 @@ if (isset($_GET['del'])) {
         <div class="content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="page-title">Approve Users</h2>
+                    <div class="col-md-12"><br><br><br>
+                        <h2 class="page-title" style="color:white;">Approve Users</h2>
                         <div class="panel panel-default">
                             <div class="panel-heading">All User Details</div>
                             <div class="panel-body">
                                 <h2 id="user-deleted-message">
                                     <?php
-                                        if (isset($_GET['del'])) {
-                                            echo "Successfully deleted user!";
-                                            echo '
+                                    if (isset($_GET['del'])) {
+                                        echo "Successfully deleted user!";
+                                        echo '
                                                 <script>
                                                 setTimeout(()=>{
                                                     window.location.href = "approve_users.php"
                                                 }, 1000)
                                                 </script>
                                             ';
-                                        }
+                                    }
                                     ?>
-                                    
+
                                 </h2>
                                 <table id="zctb" class="display table table-striped table-bordered table-hover"
                                     cellspacing="0" width="100%">
@@ -101,7 +103,7 @@ if (isset($_GET['del'])) {
                                                     <?php echo $row->middleName; ?>
                                                     <?php echo $row->lastName; ?>
                                                 </td>
-                                                
+
                                                 <td>
                                                     <?php echo $row->contactNo; ?>
                                                 </td>
@@ -109,17 +111,19 @@ if (isset($_GET['del'])) {
                                                     <?php
                                                     if (($row->admin_approved) == 0) {
                                                         echo '<a onclick="approveRegistration(' . $row->id . ')"  title="View Full Details">';
-                                                        echo '<i title="Approve" class="fa fa-check-square-o"></i>';
+                                                        echo '<i title="Approve" class="fa fa-check-square-o" style="color:black;"></i>';
                                                     } else {
                                                         echo '<a title="View Full Details">';
-                                                        echo '<i title="Already Approved" class="fa fa-check-square"></i>';
+                                                        echo '<i title="Already Approved" class="fa fa-check-square" style="color:black;"></i>';
 
                                                     }
                                                     echo "</a>";
                                                     ?>
                                                     &nbsp;&nbsp;
                                                     <a href="approve_users.php?del=<?php echo $row->id; ?>"
-                                                        title="Delete Record" onclick="return confirm(' Do you want to delete')"><i class="fa fa-trash"></i></a>
+                                                        title="Delete Record"
+                                                        onclick="return confirm(' Do you want to delete')"><i
+                                                            class="fa fa-trash color" style="color:black;"></i></a>
                                                 </td>
                                             </tr>
                                             <?php
@@ -175,7 +179,7 @@ if (isset($_GET['del'])) {
         const remerged = splitted.join("/");
         window.location.href = `${remerged}/approve_registration.php?id=${id}`;
     }
-    
+
 </script>
 
 </html>

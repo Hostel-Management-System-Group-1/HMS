@@ -53,8 +53,8 @@ if (isset($_GET['del'])) {
 		<div class="content-wrapper">
 			<div class="container-fluid">
 				<div class="row">
-					<div class="col-md-12">
-						<h2 class="page-title">Manage Rooms</h2>
+					<div class="col-md-12"><br><br><br>
+						<h2 class="page-title" style="color:white;">Manage Residents</h2>
 						<div class="panel panel-default">
 							<div class="panel-heading">All Room Details</div>
 							<div class="panel-body">
@@ -63,7 +63,7 @@ if (isset($_GET['del'])) {
 									<thead>
 										<tr>
 											<th>Sno.</th>
-											<th>Student Name</th>
+											<th>Resident Name</th>
 											<th>Reg no</th>
 											<th>Contact no </th>
 											<th>room no </th>

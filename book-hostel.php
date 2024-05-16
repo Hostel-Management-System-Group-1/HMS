@@ -53,7 +53,7 @@ echo"<script>alert('Student Succssfully register');</script>";
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	<title>Student Hostel Registration</title>
+	<title>Hostel Registration</title>
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">>
@@ -98,9 +98,9 @@ $('#fpm').val(data);
 			<div class="container-fluid">
 
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12"><br>
 					
-						<h2 class="page-title">Registration </h2>
+						<h2 class="page-title" style="color:white;">Book Hostel </h2>
 
 						<div class="row">
 							<div class="col-md-12">
